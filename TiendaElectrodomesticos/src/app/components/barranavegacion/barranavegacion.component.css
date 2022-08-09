@@ -1,0 +1,46 @@
+.navbar{
+  background: #1D976C;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #93F9B9, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #93F9B9, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+
+.logo{
+  width: 100px;
+  height:100px;
+  margin-top: 50px;
+  margin-left: 50px;
+  color: rgb(14, 13, 13);
+}
+.navbar-brand{
+  font-size: 25px;
+  font-family:'Signika',sans-serif;
+  color: rgb(14, 13, 13);
+}
+
+.d-flex{
+
+  justify-content: center;
+
+}
+.nav-item{
+  font-size: 20px;
+  font-family:'Signika',sans-serif;
+  color: rgb(14, 13, 13);
+}
+.nav-item #logo{
+  width: 35px;
+  height: 35px;
+}
+a{
+  text-decoration: none;
+  color: rgb(7, 7, 7);
+}
+.cabecera{
+  background: #1D976C;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #93F9B9, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #93F9B9, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
