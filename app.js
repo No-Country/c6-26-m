@@ -18,7 +18,7 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-app.use('/api/v1/users', usersRouter);
+app.use('/elektron/v1/users', usersRouter);
 
 app.use('*', globalErrorHandler);
 

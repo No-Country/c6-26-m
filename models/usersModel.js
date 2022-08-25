@@ -28,7 +28,7 @@ const User = db.define('user', {
   },
   status: {
     type: DataTypes.STRING,
-    defaultValue: 'active', //active | disabled
+    defaultValue: 'inactive', //active | disabled
   },
 });
 
