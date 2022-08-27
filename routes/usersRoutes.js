@@ -25,12 +25,12 @@ const {
   getUserOrders,
   getUserOrdersById,
   getUserProducts,
-  logout
+  logout,
 } = require('../controllers/usersController');
 
 const router = express.Router();
 
-router.get('/', getAllUsers); //cuando esté en producción, debe estar protegida por: protectAdmin o borrarla
+router.get('/', protectAdmin, getAllUsers); //cuando esté en producción, debe estar protegida por: protectAdmin o borrarla
 
 router.post('/', createUserValidations, checkValidations, createUser);
 
@@ -46,7 +46,7 @@ router.get('/orders', getUserOrders);
 
 router.get('/orders/:id', getUserOrdersById);
 
-router.get('/check-token', checkToken); //cuando esté en producción, debe estar protegida por: protectAdmin o borrarla
+router.get('/check-token', protectAdmin, checkToken); //cuando esté en producción, debe estar protegida por: protectAdmin o borrarla
 
 router
   .use('/:id', userExists, protectAccountOwner)

@@ -1,10 +1,14 @@
 const { app } = require('./app');
+
+const { initModels } = require('./models/initModels');
+
 const { db } = require('./utils/database');
 
 db.authenticate()
   .then(() => console.log('Database authenticated'))
   .catch(err => console.log(err));
 
+initModels();
 
 db.sync(/* {force:true} */)
   .then(() => console.log('Database synced'))
