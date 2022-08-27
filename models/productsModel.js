@@ -35,7 +35,7 @@ const Products = db.define('products', {
     defaultValue: 'active',
   },
   imgUrls: {
-    type: DataTypes.ARRAY,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   userId: {
