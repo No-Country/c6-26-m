@@ -46,11 +46,11 @@ const login = catchAsync(async (req, res, next) => {
     where: { email, status: "inactive" },
   });
 
-  await user.update({ status: "active" });
-
   if (!user || !(await bcrypt.compare(password, user.password))) {
     return next(new AppError("Invalid credentials", 400));
   }
+
+  user.update({ status: "active" });
 
   const token = await jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -152,8 +152,8 @@ const logout = catchAsync(async (req, res, next) => {
 
  await sessionUser.update({ status: "inactive"});
 
-res.redirect('http://google.com') //redirigir al home de la página
-//res.status(200).json({  status: "logged out succesfully" }); //método alternativo: si el front recibe esta respuesta, redirigir
+//res.redirect('http://google.com') //redirigir al home de la página
+res.status(200).json({  status: "logged out successfully" }); //método alternativo: si el front recibe esta respuesta, redirigir
 })
 
 module.exports = {

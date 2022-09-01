@@ -46,6 +46,7 @@ const protectToken = catchAsync(async (req, res, next) => {
 });
 
 const protectAdmin = catchAsync(async (req, res, next) => {
+  console.log(req.sessionUser)
   if (req.sessionUser.role !== 'admin') {
     return next(new AppError('Access not granted', 403));
   }

@@ -9,6 +9,7 @@ const { globalErrorHandler } = require('./controllers/errorsController');
 
 const { usersRouter } = require('./routes/usersRoutes');
 const { productsRouter } = require('./routes/productsRouter');
+const { cartRouter } = require('./routes/cartRouter');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use(limiter);
 
 app.use('/elektron/v1/users', usersRouter);
 app.use('/elektron/v1/products', productsRouter);
+app.use('/api/v1/cart', cartRouter);
 
 app.use('*', globalErrorHandler);
 
