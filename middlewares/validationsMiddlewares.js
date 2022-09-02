@@ -31,8 +31,8 @@ const createProductValidations = [
   body("price")
     .notEmpty()
     .withMessage("Price cannot be empty")
-    .isInt({ min: 1 })
-    .withMessage("Price cannot be 0"),
+    /* .isInt({ min: 1 })
+    .withMessage("Price cannot be 0"), */,
   body("quantity")
     .notEmpty()
     .withMessage("Quantity cannot be empty")

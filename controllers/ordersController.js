@@ -46,7 +46,7 @@ const addProductToCart = catchAsync(async (req, res, next) => {
     });
   }
 
-  if (cartExists.status == 'purchased') {
+  if (cartExists.status === 'purchased') {
     await cartExists.update({
       status: 'active',
     });
@@ -60,7 +60,7 @@ const addProductToCart = catchAsync(async (req, res, next) => {
     where: { cartId: verifyCart.id, productId },
   });
 
-  if (productsInCartExist && productsInCartExist.status == 'removed') {
+  if (productsInCartExist && productsInCartExist.status === 'removed') {
     await productsInCartExist.update({ status: 'active', quantity });
     return res.status(200).json({ status: 'Product added' });
   }
@@ -107,7 +107,9 @@ const updateProductInCart = catchAsync(async (req, res, next) => {
     quantity,
   });
 
-  res.status(201).json({ updatedProductInCart });
+  res
+    .status(201)
+    .json({ status: 'Succes, product in cart updated', updatedProductInCart });
 });
 
 const removeProductFromCart = catchAsync(async (req, res, next) => {

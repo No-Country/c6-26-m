@@ -14,7 +14,7 @@ const Products = db.define('products', {
     unique: true,
   },
   description: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   quantity: {
@@ -35,7 +35,7 @@ const Products = db.define('products', {
     defaultValue: 'active',
   },
   imgUrls: {
-    type: DataTypes.STRING,
+    type: DataTypes.ARRAY(DataTypes.TEXT),
     allowNull: false,
   },
   userId: {

@@ -34,7 +34,7 @@ app.use(limiter);
 
 app.use('/elektron/v1/users', usersRouter);
 app.use('/elektron/v1/products', productsRouter);
-app.use('/api/v1/cart', cartRouter);
+app.use('/elektron/v1/cart', cartRouter);
 
 app.use('*', globalErrorHandler);
 

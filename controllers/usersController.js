@@ -1,15 +1,19 @@
 //bcrypt encripta la contraseña para que sea segura (línea 25 y 26)
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
 
-const { User } = require("../models/usersModel");
+const { User } = require('../models/usersModel');
+const { Order } = require('../models/ordersModel');
+const { Cart } = require('../models/cartModel');
+const { ProductsInCart } = require('../models/productsInCartModel');
+const { Products } = require('../models/productsModel');
 
-const { catchAsync } = require("../utils/catchAsync");
-const { AppError } = require("../utils/appError");
-const { app } = require("../app");
+const { catchAsync } = require('../utils/catchAsync');
+const { AppError } = require('../utils/appError');
+const { app } = require('../app');
 
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: './config.env' });
 
 const getAllUsers = catchAsync(async (req, res, next) => {
   const users = await User.findAll();
@@ -43,14 +47,18 @@ const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({
-    where: { email, status: "inactive" },
+    where: { email },
   });
 
-  if (!user || !(await bcrypt.compare(password, user.password))) {
-    return next(new AppError("Invalid credentials", 400));
+  if (user.status === 'unavailable') {
+    return next(new AppError('Invalid credentials', 400));
   }
 
-  user.update({ status: "active" });
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    return next(new AppError('Invalid credentials', 400));
+  }
+
+  user.update({ status: 'active' });
 
   const token = await jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -68,16 +76,16 @@ const updateUser = catchAsync(async (req, res, next) => {
 
   await user.update({ username, email });
 
-  res.status(200).json({ status: "Success: user updated" });
+  res.status(200).json({ status: 'Success: user updated' });
 });
 
 const deleteUser = catchAsync(async (req, res, next) => {
   const { user } = req;
 
-  await user.update({ status: "disabled" });
+  await user.update({ status: 'disabled' });
 
   res.status(200).json({
-    status: "Success: user disabled",
+    status: 'Success: user disabled',
   });
 });
 
@@ -85,9 +93,9 @@ const getUserOrders = catchAsync(async (req, res, next) => {
   const { sessionUser } = req;
 
   if (
-    (await Cart.findOne({ where: { userId: sessionUser.id } })) == undefined
+    (await Cart.findOne({ where: { userId: sessionUser.id } })) === undefined
   ) {
-    return next(new AppError("This user has no orders", 403));
+    return next(new AppError('This user has no orders', 403));
   }
 
   const order = await Order.findAll({
@@ -95,7 +103,7 @@ const getUserOrders = catchAsync(async (req, res, next) => {
     include: {
       model: Cart,
       where: { userId: sessionUser.id },
-      include: [{ model: ProductsInCart, where: { status: "purchased" } }],
+      include: [{ model: ProductsInCart, where: { status: 'purchased' } }],
     },
   });
 
@@ -113,12 +121,12 @@ const getUserOrdersById = catchAsync(async (req, res, next) => {
     include: {
       model: Cart,
       where: { userId: sessionUser.id },
-      include: [{ model: ProductsInCart, where: { status: "purchased" } }],
+      include: [{ model: ProductsInCart, where: { status: 'purchased' } }],
     },
   });
 
   if (!order) {
-    return next(new AppError("Order with given id does not exist", 403));
+    return next(new AppError('Order with given id does not exist', 403));
   }
 
   res.status(200).json({
@@ -150,11 +158,11 @@ const checkToken = catchAsync(async (req, res, next) => {
 const logout = catchAsync(async (req, res, next) => {
   const { sessionUser } = req;
 
- await sessionUser.update({ status: "inactive"});
+  await sessionUser.update({ status: 'inactive' });
 
-//res.redirect('http://google.com') //redirigir al home de la página
-res.status(200).json({  status: "logged out successfully" }); //método alternativo: si el front recibe esta respuesta, redirigir
-})
+  //res.redirect('http://google.com') //redirigir al home de la página
+  res.status(200).json({ status: 'logged out successfully' }); //método alternativo: si el front recibe esta respuesta, redirigir
+});
 
 module.exports = {
   getAllUsers,
@@ -166,5 +174,5 @@ module.exports = {
   getUserOrders,
   getUserOrdersById,
   getUserProducts,
-  logout
+  logout,
 };

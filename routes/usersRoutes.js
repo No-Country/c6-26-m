@@ -30,13 +30,13 @@ const {
 
 const router = express.Router();
 
-router.get('/', protectToken, protectAdmin, getAllUsers); //cuando esté en producción, debe estar protegida por: protectAdmin o borrarla
-
 router.post('/', createUserValidations, checkValidations, createUser);
 
 router.post('/login', login);
 
 router.use(protectToken);
+
+router.get('/', protectAdmin, getAllUsers); //cuando esté en producción, debe estar protegida por: protectAdmin o borrarla
 
 router.post('/logout', logout);
 
