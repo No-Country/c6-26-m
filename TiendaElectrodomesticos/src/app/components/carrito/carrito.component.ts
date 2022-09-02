@@ -46,6 +46,10 @@ this.items = [];
 
 }
 
+confirmarItem(){
+  this.carritoService.getItems();
+      window.confirm('PROCEDER A PASARELA DE PAGOS');
+}
 
 
 /* borradoItem(i){

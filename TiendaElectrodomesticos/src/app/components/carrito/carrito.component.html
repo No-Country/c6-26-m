@@ -20,6 +20,7 @@
           <th>Imagen</th>
           <th>Precio</th>
           <th>Descripcion</th>
+          <th>Cantidad</th>
           <th>Borrar</th>
       </tr>
   </thead>
@@ -32,10 +33,11 @@
       </td>
       <td>{{item.price}}</td>
       <td >{{item.description}}</td>
+      <td>{{item.quantity}}</td>
       <td>
         <button type="button" class="btn btn-outline-danger btn-lg" (click)="borrarItem(i)"><i class="bi bi-trash-fill" ></i> Borrar</button>
         <br>
-        <button class="btn btn-outline-success btn-lg" >Confirmar</button>
+        <button class="btn btn-outline-success btn-lg" (click)="confirmarItem()">Confirmar</button>
       </td>
     </tr>
   </tbody>
