@@ -24,9 +24,6 @@ constructor(private carritoService : CarritoService,
 
                 this.guardarStorage();
 
-
-
-
             }
 
  guardarStorage(){
