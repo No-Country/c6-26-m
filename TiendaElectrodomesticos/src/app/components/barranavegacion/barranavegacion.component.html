@@ -7,12 +7,15 @@
         <button class="btn btn-outline-light bg-success" type="submit">Buscar</button>
       </form>
       <div class="nav-item">
-        <a class="nav-link " class="logo" href="#"><i class="fa-solid fa-user"><br></i><span style="letter-spacing: 3px;" class="badge badge-pill badge-secondary "><br></span></a>Mi cuenta
+        <a  class="nav-link " class="logo" href="#"  aria-current="page"><i class="fa-solid fa-user"><br></i><span style="letter-spacing: 3px;" class="badge badge-pill badge-secondary "><br></span></a>Mi cuenta
       </div>
       <div class="nav-item">
-        <a class="nav-link " class="logo" href="#"><i class="fa-solid fa-cart-shopping"></i><span style="letter-spacing: 3px;" class="badge badge-pill badge-success"><br></span>$00.00</a>
+        <a  class="logo" routerLink="/carrito" routerLinkActive="/carrito"><i class="fa-solid fa-cart-shopping">
+        <span style="letter-spacing: 5px;" class="badge badge-pill badge-success" routerLink= "/carrito" *ngFor="let productos of product"></span><br></i></a>
+       <span id="number" class="badge" style="font-size:25px">{{(contarProductos.length)}}</span>
       </div>
     </div>
+
 </nav>
 
 <div class="cabecera">

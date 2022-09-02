@@ -1,9 +1,11 @@
+import { Product, productos } from './../interfaces/producto-respuesta';
 
-import { Component, OnInit } from '@angular/core';
+import { Component,Input,Output,EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductosService } from 'src/app/services/productos.service';
+
 import { HttpClient } from '@angular/common/http';
-import { ProductoRespuesta } from '../interfaces/producto-respuesta';
+
+import { CarritoService } from 'src/app/services/carrito.service';
 
 
 @Component({
@@ -13,20 +15,46 @@ import { ProductoRespuesta } from '../interfaces/producto-respuesta';
 })
 export class TarjetasComponent implements OnInit {
 
-  newProductos : any[] = [];
 
-  constructor(private productos : ProductosService,
-              private  router : ActivatedRoute,
-              private Http : HttpClient ) { }
+ productos = productos;
 
 
-  ngOnInit(): void {
+  @Input() Productos : Product | undefined;
+  @Output() notify = new EventEmitter();
 
-    this.productos.getProductos()
-    .subscribe ((res : ProductoRespuesta) => {
-    this.newProductos = res.data;
-    console.log(res);
-    })
+ onNotify() {
+    this.notify.emit(this.productos);
+  window.alert('AGREGADO AL CARRITO');
   }
 
-}
+  constructor(
+              private  router : ActivatedRoute,
+              private Http : HttpClient,
+              private  carritoService : CarritoService,
+              ) {
+
+                /* this.guardarStorage(); */
+              }
+
+  /* guardarStorage(){
+  localStorage.setItem('items', JSON.stringify(this.productos));
+
+
+              } */
+
+  addToCart(producto){
+      this.carritoService.addToCart(producto);
+      window.alert('Tu producto ha sido agregado al carrito');
+
+      }
+
+  ngOnInit(): void {
+console.log(productos);
+
+    }
+
+
+
+  }
+
+

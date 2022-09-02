@@ -1,44 +1,30 @@
-<div *ngFor="let productos of newProductos"  class="height d-flex justify-content-between px-3">
 
-  <div  class="card p-3">
-
-      <div class="d-flex justify-content-between align-items-center ">
-          <div  class="mt-2">
-              <h4 class="text-uppercase">{{productos.title}}</h4>
-              <div class="mt-5">
-                  <h5 class="text-uppercase mb-0">{{productos.category}}</h5>
-                  <h1 class="main-heading mt-0">{{productos.id}}</h1>
-                  <div class="d-flex flex-row user-ratings">
-                      <div class="ratings">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      </div>
-                      <h6 class="text-muted ml-1">4/5</h6>
-                  </div>
-              </div>
-          </div>
-          <div class="image">
-              <img src="https://i.imgur.com/MGorDUi.png" width="200">
-          </div>
-      </div>
-
-      <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
-          <span></span>
-          <div class="colors">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-          </div>
-
-      </div>
-
-
-      <p>A great option weather you are at office or at home. </p>
-
-      <button class="btn btn-danger">Add to cart</button>
+ <div class="container">
+  <div class="row">
+<div *ngFor="let product of productos, let i = index" class="card-group col-lg-4 col-md-6 col-xs-12 px-4">
+  <div class="card" style="width: 18rem;">
+    <img [src]="product.images" class="card-img-top" width="240" height="320" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{product.title}}</h5>
+      <p class="card-text">{{product.description}}</p>
+      <p class="card-text">CATEGORIA: {{product.category}}</p>
+      <input type="range" >{{product.stock}}   Productos en Stock
+      <p class="card-text"  >PRECIO : ${{product.price}} pesos <br><br>
+      <span type="button" class="btn btn-danger"  (click)="addToCart(product)"
+      (notify) ="onNotify()"> AGREGAR A CARRITO</span></p>
+      <p class="card-text">Raiting de Producto: {{product.rating}}</p>
+      <input id="radio1" type="radio" name="estrellas" value="5">
+      <label for="radio1"><i class="fa-solid fa-star"></i></label>
+      <input id="radio1" type="radio" name="estrellas" value="5">
+      <label for="radio1"><i class="fa-solid fa-star"></i></label>
+      <input id="radio1" type="radio" name="estrellas" value="5">
+      <label for="radio1"><i class="fa-solid fa-star"></i></label>
+      <input id="radio1" type="radio" name="estrellas" value="5">
+      <label for="radio1"><i class="fa-solid fa-star"></i></label>
+      <input id="radio1" type="radio" name="estrellas" value="5">
+      <label for="radio1"><i class="fa-solid fa-star"></i></label>
+    </div>
   </div>
-
 </div>
+</div>
+
