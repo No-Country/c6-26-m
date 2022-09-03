@@ -18,15 +18,19 @@ a{
 td{
  justify-content: space-between;
  font-size-adjust: auto;
+ margin: solid;
 }
 
 h1{
-  font-size: 30px;
+  font-size: 35px;
+  font-weight: bold;
   font-family:'Signika',sans-serif;
   color: rgb(14, 13, 13);
   text-decoration: none;
   text-align: center;
   margin-top: 50px;
+  text-shadow: 2px 2px #979797;
+  text-anchor: 20px;
 
 }
 table{

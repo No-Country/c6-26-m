@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit, NgModule } from '@angular/core';
+import { Component, Input, OnInit, Output,EventEmitter, NgModule } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CarritoComponent } from '../carrito/carrito.component';
@@ -18,17 +18,15 @@ export class BarranavegacionComponent implements OnInit {
 
 product = productos;
 
+@Input() addedProduct = new EventEmitter<Product>();
+@Output() addFromToCart = new EventEmitter<Product>();
+@Input() myShopingCart : Product [] = [] ;
+
   constructor(private router : Router,
               private  route: ActivatedRoute,
 
-
               private NgModule : CommonModule  ) {
 
-   /*  let productStorage = localStorage.getItem('productos');
-    if (productStorage) {
-      this.product = JSON.parse(productStorage);
-    }
-    this.product = []; */
   }
 
   contarProductos(products: Product[]){
@@ -39,9 +37,14 @@ product = productos;
   ngOnInit(): void {
   }
 
+onAddToShoppingCart(product: Product){
+
+      this.myShopingCart.push(product);
+      this.addFromToCart.emit(product);
+  }
 
 
+  }
+console.log(productos.length);
 
-}
-console.log(productos);
 /* NOTA DEBEMOS ORBGANIZAR EL LOCAL STORAGE Y LA FORMA DE QUE LA IMAGEN DEL PRODUCTO SE MUESTRE EN EL CARRIOTO AL IGUAL QUE SALGA LA SUMA DE LOS PRODUCTOS QUE SE VAN AGREGANDO */

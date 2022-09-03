@@ -1,16 +1,16 @@
 
-<p></p>
-<nav class="navbar navbar-expand-lg navbar-light bg-primary " >
+<nav class="navbar navbar-expand-lg navbar-light bg-primary"  >
   <div class="container-fluid">
     <a class="navbar-brand" href="#" >ELEKTRÖN</a>
     <div>
 
-      <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
+      <a href="#" id="vaciar-carrito" class="button u-full-width" >Vaciar Carrito</a>
     </div>
     </div>
 </nav>
 
 <h1>Carrito</h1>
+<hr>
 
 <table class="table" *ngFor="let item of items, let i =index">
   <thead>
@@ -33,7 +33,7 @@
       </td>
       <td>{{item.price}}</td>
       <td >{{item.description}}</td>
-      <td>{{item.quantity}}</td>
+      <td type="number">{{addFromToCart.length}}</td>
       <td>
         <button type="button" class="btn btn-outline-danger btn-lg" (click)="borrarItem(i)"><i class="bi bi-trash-fill" ></i> Borrar</button>
         <br>

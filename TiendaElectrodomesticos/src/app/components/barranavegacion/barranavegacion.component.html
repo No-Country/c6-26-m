@@ -12,7 +12,7 @@
       <div class="nav-item">
         <a  class="logo" routerLink="/carrito" routerLinkActive="/carrito"><i class="fa-solid fa-cart-shopping">
         <span style="letter-spacing: 5px;" class="badge badge-pill badge-success" routerLink= "/carrito" *ngFor="let productos of product"></span><br></i></a>
-       <span id="number" class="badge" style="font-size:25px">{{(contarProductos.length)}}</span>
+       <span id="number" class="badge" style="font-size:25px">{{(myShopingCart).length }}</span>
       </div>
     </div>
 

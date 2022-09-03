@@ -15,12 +15,15 @@ import { CarritoService } from 'src/app/services/carrito.service';
 })
 export class TarjetasComponent implements OnInit {
 
-
+ myShopingCart:Product[] = [];
  productos = productos;
 
 
   @Input() Productos : Product | undefined;
+  @Output() addedProduct = new EventEmitter<Product>();
   @Output() notify = new EventEmitter();
+  @Output() addProduct= new EventEmitter<Product>();
+
 
  onNotify() {
     this.notify.emit(this.productos);
@@ -42,9 +45,14 @@ export class TarjetasComponent implements OnInit {
 
               } */
 
+  addFromToCart(producto){
+    this.addedProduct.emit(producto)
+    this.myShopingCart.push(producto);
+  }
+
   addToCart(producto){
-      this.carritoService.addToCart(producto);
-      window.alert('Tu producto ha sido agregado al carrito');
+    this.carritoService.addToCart(producto);
+    window.alert('Tu producto ha sido agregado al carrito');
 
       }
 

@@ -1,5 +1,5 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, Output,EventEmitter, } from '@angular/core';
+
+import { Component, OnInit, Output,EventEmitter, Input, } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import { CarritoService } from 'src/app/services/carrito.service';
@@ -16,6 +16,8 @@ export class CarritoComponent implements OnInit {
   items = this.carritoService.getItems();
 
 @Output() notify = new EventEmitter();
+@Input() addFromToCart = new EventEmitter<Product>();
+
 
 constructor(private carritoService : CarritoService,
               private  route :ActivatedRoute,
@@ -48,6 +50,10 @@ confirmarItem(){
       window.confirm('PROCEDER A PASARELA DE PAGOS');
 }
 
+/* borrarTodo( i : number){
+  this.items.splice(i,i);
+  this.carritoService.guardarStorage();
+} */
 
 /* borradoItem(i){
   this.carritoService.addToCart(i);
@@ -59,6 +65,10 @@ confirmarItem(){
 
   }
 
+  contarProductos(productos: Product){
+    this.addFromToCart.emit(productos);
+    return this.items.length;
+  }
 }
 
 
