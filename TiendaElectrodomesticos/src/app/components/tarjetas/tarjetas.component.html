@@ -1,0 +1,30 @@
+
+ <div class="container">
+  <div class="row">
+<div *ngFor="let product of productos, let i = index" class="card-group col-lg-4 col-md-6 col-xs-12 px-4">
+  <div class="card" style="width: 18rem;">
+    <img [src]="product.images" class="card-img-top" width="240" height="320" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{product.title}}</h5>
+      <p class="card-text">{{product.description}}</p>
+      <p class="card-text">CATEGORIA: {{product.category}}</p>
+      <input type="range" >{{product.stock}}   Productos en Stock
+      <p class="card-text"  >PRECIO : ${{product.price}} pesos <br><br>
+      <span type="button" class="btn btn-danger"  (click)="addToCart(product)" (click)="addFromToCart(product)"
+      (notify) ="onNotify()"> AGREGAR A CARRITO</span></p>
+      <p class="card-text">Raiting de Producto: {{product.rating}}</p>
+      <input id="radio1" type="radio" name="estrellas" value="5">
+      <label for="radio1"><i class="fa-solid fa-star"></i></label>
+      <input id="radio1" type="radio" name="estrellas" value="5">
+      <label for="radio1"><i class="fa-solid fa-star"></i></label>
+      <input id="radio1" type="radio" name="estrellas" value="5">
+      <label for="radio1"><i class="fa-solid fa-star"></i></label>
+      <input id="radio1" type="radio" name="estrellas" value="5">
+      <label for="radio1"><i class="fa-solid fa-star"></i></label>
+      <input id="radio1" type="radio" name="estrellas" value="5">
+      <label for="radio1"><i class="fa-solid fa-star"></i></label>
+    </div>
+  </div>
+</div>
+</div>
+

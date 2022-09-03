@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary " >
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" >ELEKTRÖN</a>
+
+      <form class="d-flex col-xs-12 col-lg-6 col-md-4 pt-3">
+        <input class="form-control me-2" type="search" placeholder="Buscar tu producto..." aria-label="Search">
+        <button class="btn btn-outline-light bg-success" type="submit">Buscar</button>
+      </form>
+      <div class="nav-item">
+        <a  class="nav-link " class="logo" href="#"  aria-current="page"><i class="fa-solid fa-user"><br></i><span style="letter-spacing: 3px;" class="badge badge-pill badge-secondary "><br></span></a>Mi cuenta
+      </div>
+      <div class="nav-item">
+        <a  class="logo" routerLink="/carrito" routerLinkActive="/carrito"><i class="fa-solid fa-cart-shopping">
+        <span style="letter-spacing: 5px;" class="badge badge-pill badge-success" routerLink= "/carrito" *ngFor="let productos of product"></span><br></i></a>
+       <span id="number" class="badge" style="font-size:25px">{{(myShopingCart).length }}</span>
+      </div>
+    </div>
+
+</nav>
+
+<div class="cabecera">
+  <div class="container-fluid">
+    <div class="col">
+      <ul class="nav justify-content-around">
+        <li><a href="#" class="nav-link"> TV,Audio y Video</a></li>
+        <li><a href="#" class="nav-link">Notebooks y Celulares</a></li>
+        <li><a href="#" class="nav-link" tabindex="-1" aria-disabled="true">Electrodomesticos</a></li>
+        <li><a href="#" class="nav-link">Hogar</a></li>
+        <li><a href="#" class="nav-link">Herramientas</a></li>
+        <li><a href="#" class="nav-link">Mas categorias</a></li>
+      </ul>
+  </div>
+</div>
+
