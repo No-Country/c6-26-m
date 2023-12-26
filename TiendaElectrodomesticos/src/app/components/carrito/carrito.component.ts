@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { Product, productos } from './../interfaces/producto-respuesta';
 
+
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
@@ -16,7 +17,8 @@ export class CarritoComponent implements OnInit {
   items = this.carritoService.getItems();
 
 @Output() notify = new EventEmitter();
-@Input() addFromToCart = new EventEmitter<Product>();
+@Input() addFromToCart = new EventEmitter<Product>()
+@Input()addedProduct = new EventEmitter<Product>();
 
 
 constructor(private carritoService : CarritoService,

@@ -17,12 +17,14 @@ export class TarjetasComponent implements OnInit {
 
  myShopingCart:Product[] = [];
  productos = productos;
-
+  contadorProductos: number = 0;
 
   @Input() Productos : Product | undefined;
   @Output() addedProduct = new EventEmitter<Product>();
   @Output() notify = new EventEmitter();
   @Output() addProduct= new EventEmitter<Product>();
+  @Output() addedToCart= new EventEmitter<Product>();
+
 
 
  onNotify() {
@@ -47,7 +49,9 @@ export class TarjetasComponent implements OnInit {
 
   addFromToCart(producto){
     this.addedProduct.emit(producto)
+    /* this.contadorProductos = this.contadorProductos++; */
     this.myShopingCart.push(producto);
+    this.carritoService.addProducto();
   }
 
   addToCart(producto){
